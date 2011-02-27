@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>家校通登录</title>
+<style type="text/css">
+<!--
+body {
+	color:#FFFFFF;
+}
+.button {
+	background: #FFFFFF;
+	color: #000000;
+	font: 12px Tahoma, Verdana;
+	border: 1px solid #00309C;
+	height: 22px;
+	width: 40px;
+}
+-->
+</style>
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript">
+		function rootLogin(){
+			var tbl = $('root');
+			
+			tbl.style.display="inline";
+			
+			var tbl = $('domain');
+			
+			tbl.style.display="none";
+			$('login1').style.display="none";
+			
+			
+			$('login2').style.display="inline";
+			
+		}
+	
+		function domainLogin(){
+			var tbl = $('domain');
+			
+			tbl.style.display="inline";
+			
+			var tbl = $('root');
+			
+			tbl.style.display="none";
+			
+			$('login2').style.display="none";
+			
+			
+			$('login1').style.display="inline";
+		}
+	
+	</script>
+</head>
+<body>
+<script language="JavaScript">
+	
+	var iopacaty =100;
+	var timerid = null;
+	var frog = new Image();
+		frog.src="images/frog.jpg";
+	var froggold = new Image();
+		froggold.src="images/froggold.jpg";
+	
+	var bike = new Image();
+		bike.src="images/bike.jpg";
+	var bikegold = new Image();
+		bikegold.src="images/bikegold.jpg";
+	
+	/*  检测浏览器    */
+	var ns4 = (document.layers)?true:false;
+	var dom = (document.getElementById)?true:false;
+	if(window.navigator.appName == "Netscape" && dom)
+		var ns6_7 = true;
+	if(document.all && !dom)
+		var ie4 = true;
+	
+	/*  以下是透明度效果   */
+	function alphaImgOver(obj1,obj2,obj3,obj4,objimg,imgsrc)
+	{
+		for(var i =100;i>40;i--)
+		{
+			if(dom && !ns6_7)
+			{
+				eval("document.all(objimg).src=" + imgsrc + ".src")
+				document.all(obj1).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+ i +")"
+				document.all(obj2).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+ i +")"
+			}
+			if(ns6_7)
+			{
+				eval("document.getElementById(objimg).src=" + imgsrc + ".src")
+				document.getElementById(obj1).style.MozOpacity=i+"%"
+			}
+		}
+		if(dom && !ns6_7)
+		{
+			document.all(obj3).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=100)"
+			document.all(obj4).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=100)"
+		}
+		if(ns6_7) document.getElementById(obj3).style.MozOpacity="99%"
+	}
+	
+	function alphaImgOut(obj1,obj2,obj3,obj4,objimg,imgsrc)
+	{
+		if(dom && !ns6_7)
+		{
+			eval("document.all(objimg).src=" + imgsrc + ".src")
+			document.all(obj1).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=40)"
+			document.all(obj2).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=40)"
+			document.all(obj3).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=40)"
+			document.all(obj4).style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity=40)"
+		}
+		if(ns6_7)
+		{
+			eval("document.getElementById(objimg).src=" + imgsrc + ".src")
+			document.getElementById(obj1).style.MozOpacity="40%"
+			document.getElementById(obj3).style.MozOpacity="40%"
+		}
+	}
+	
+	/*  没有元素时的情况   */
+	function notallAlpha()
+	{
+		if( iopacaty > 35 )
+		{
+			if(dom && !ns6_7)
+			{
+				document.all.frog1.style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+iopacaty+")"
+				document.all.frog2.style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+iopacaty+")"
+				document.all.bike1.style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+iopacaty+")"
+				document.all.bike2.style.filter ="progid:DXImageTransform.Microsoft.Alpha(opacity="+iopacaty+")"
+			}
+			if(ns6_7)
+			{
+				document.getElementById("frog1").style.MozOpacity=iopacaty+"%"
+				document.getElementById("bike1").style.MozOpacity=iopacaty+"%"
+			}
+		iopacaty -= 5;
+		}
+	}
+	function opacityNot()
+	{
+	timerid = setInterval("notallAlpha()",100);
+	}
+	
+	function countTb()
+	{
+		if(dom || ie4)
+		{
+			var ht1 = (dom)?document.getElementById("td0").offsetHeight : document.all.td0.clientHeight;
+			var ht2 = (dom)?document.getElementById("tb2").offsetHeight : document.all.tb2.clientHeight;
+			var ht = Math.round((ht1 - ht2)/2);
+			if(dom)
+			{
+				document.getElementById("tb1").style.height = ht + "px";
+				document.getElementById("tb3").style.height = ht + "px";
+			}
+			else
+			{
+				document.all.tb1.style.height = ht + "px";
+				document.all.tb3.style.height = ht + "px";
+			}
+		}
+		if(ns4)
+		{
+			if(confirm("xx")){
+				window.top.location = "http://www.netscape.com";
+			}
+			else{
+				window.location = "main.html"
+			}
+		}
+		
+	}
+</script>
+<body onselectstart="return false" ondrag="event.returnValue = false" oncontextmenu="return false" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onLoad="countTb()" style="overflow:hidden">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%" bgcolor="#00309C">
+	<tr>
+		<td valign="middle" height="13%">&nbsp;</td>
+	</tr>
+	<tr>
+		<td height="2">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="31%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#5A7EDC', EndColorStr='#C7DDFF')"><img src="images/blank.gif" width="1" height="2"></td>
+					<td width="69%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#C7DDFF', EndColorStr='#5A7EDC')"><img src="images/blank.gif" width="1" height="2"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="71%" bgcolor="#5A7EDC">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+				<tr>
+					<td width="45%" align="right" style="padding-right:12px">
+						<!--<div style="padding-right:20px">
+          		<img src="images/twoboy.gif" width="156" height="56" title="家校通">
+			</div>-->
+						<div style="font-size:14pt;font-weight:bold"> 家校通系统<sup><font style="font-size:11pt">&reg;</font></sup>&nbsp;&nbsp;&nbsp;&nbsp; </div>
+						<br>
+						<div style="padding-right:20px;font-size:11pt">开始访问，请选择登录身份</div>
+					</td>
+					<td width="1">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+							<tr>
+								<td height="50%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#5A7EDC', EndColorStr='#C7DDFF')"><img src="images/blank.gif" width="1" height="1"></td>
+							</tr>
+							<tr>
+								<td height="50%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#C7DDFF', EndColorStr='#5A7EDC')"><img src="images/blank.gif" width="1" height="1"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="55%" id="td0">
+						<table id="tb1" width="100%" border="0" cellspacing="0" cellpadding="0" onMouseOver="opacityNot()">
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<table id="tb2" width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr onMouseOver="alphaImgOver('bike1','bike2','frog1','frog2','frog1','froggold')" onMouseOut="alphaImgOut('bike1','bike2','frog1','frog2','frog1','frog')">
+								<td width="79" style="padding-left:23px;padding-bottom:20px"> <img src="images/frog.jpg" hspace="12" width="55" height="55" id="frog1" onMouseOver="this.style.cursor='hand';" onMouseOut="this.style.cursor='normal';" onClick="rootLogin();" style="-moz-opacity:99%;" border="0" alt="管理员登录"> </td>
+								<td id="frog2" width="100%" valign="top" style="filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);font-size:11pt;font-weight:bold;font-family:宋体,新宋体" title=""> <a id="login1" href="#" style="text-decoration: none;color:#FFFFFF" onClick="rootLogin();">教师登录</a>
+									<table width="320px" border="0" cellspacing="0" cellpadding="0" style="display:none;font-size:12px;" id="root">
+										<tr height="20px">
+											<td width="125px">用户名：</td>
+											<td width="135px">密码：</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td width="125px">
+												<input type="text" style="width:120px;height:22px; border:1px solid #00309C" name="user.name" id="rootUserName" />
+											</td>
+											<td width="135px">
+												<input type="password" style="width:120px;height:22px; border:1px solid #00309C" name="user.password" id="rootUserPassword" />
+											</td>
+											<td>
+												<input id="submit1" type="submit" class="button" style="" value="登录" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr onMouseOver="alphaImgOver('frog1','frog2','bike1','bike2','bike1','bikegold')" onMouseOut="alphaImgOut('frog1','frog2','bike1','bike2','bike1','bike')">
+								<td width="79" style="padding-left:23px;padding-bottom:20px;"><img src="images/bike.jpg" onMouseOver="this.style.cursor='hand';" onMouseOut="this.style.cursor='normal';" onClick="domainLogin();" hspace="12" width="55" height="55" id="bike1" style="filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);-moz-opacity:99%" border="0" alt="域管理员登录"></td>
+								<td id="bike2" width="100%" valign="top" style="filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);font-size:11pt;font-weight:bold;font-family:宋体,新宋体" title=""> <a href="#" id="login2" style="text-decoration: none;color:#FFFFFF" onClick="domainLogin();">家长登录</a>
+									<table width="380px" border="0" cellspacing="0" cellpadding="0" style="display:none;font-size:12px;" id="domain">
+										<tr height="20px">
+											<td width="105px">用户名：</td>
+											<td width="105px">密码：</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td width="105px">
+												<input type="text" style="width:100px; height:22px; border:1px solid #00309C" name="user.name" id="domainUserName" />
+											</td>
+											<td width="105px">
+												<input type="password" style="width:100px;height:22px; border:1px solid #00309C" name="user.password" id="domainUserPassword" />
+											</td>
+											<td>
+												<input id="submit2" type="submit" class="button" style="" value="登录" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table id="tb3" width="100%" border="0" cellspacing="0" cellpadding="0" onMouseOver="opacityNot()">
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="31%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#0C3CA1', EndColorStr='#F49538')"><img src="images/blank.gif" width="1" height="2"></td>
+					<td width="69%" style="filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#F49538', EndColorStr='#0C3CA1')"><img src="images/blank.gif" width="1" height="2"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="16%"><a href="Javascript:void(null)" onClick="closePc()" style="text-decoration: none"><img src="images/closepc.jpg" width="26" height="26" vspace="20" hspace="20" border="0" align="absmiddle" alt="退出家校通系统"><span style="color:#FFFFFF;font-size:11pt">退出家校通</span></a></td>
+	</tr>
+</table>
+<script>
+
+function closePc()
+{
+	try
+	{
+		if(confirm('你确定要关闭窗口吗？'))
+		{
+			window.opener = null;
+			window.close();
+		}
+	}
+	catch(e)
+	{
+		window.opener = null;
+		window.close();
+	}
+}
+</script>
+</body>
+</html>
